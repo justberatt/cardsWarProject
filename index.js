@@ -16,6 +16,11 @@ document.getElementById('draw-cards').addEventListener('click', () => {
     fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckID}/draw/?count=2`)
         .then(res => res.json())
         .then(data => {
-            data.cards.forEach(card => console.log(card.value + card.suit))
+            data.cards.forEach(card => {
+                const cards = document.querySelector('#cards')
+                cards.innerHTML += `
+                    <img src="${card.image}"></img>
+                `
+            })
         })
 })
