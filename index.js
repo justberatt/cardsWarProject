@@ -9,6 +9,7 @@ const getDeck = () => {
     fetch('https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/')
     .then(res => res.json())
     .then(data => {
+        remainingCardsText.textContent = `Cards remaining: ${data.remaining}`
         deckID = data.deck_id
     })
 }
@@ -18,6 +19,11 @@ const drawCards = () => {
         .then(res => res.json())
         .then(data => {
             remainingCardsText.textContent = `Cards remaining: ${data.remaining}`
+            if (data.remaining === 0) {
+                drawCardsBtn.disabled = true
+                drawCardsBtn.classList.add('disabled')
+            }
+
             cardsContainer.children[0].innerHTML = `
                 <img src="${data.cards[0].image}"></img>
             `

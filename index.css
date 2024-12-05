@@ -55,3 +55,8 @@ div.top > p {
     margin: 0;
     margin-left: 10px;
 }
+
+.disabled {
+    opacity: 20%;
+    cursor: default;
+}
