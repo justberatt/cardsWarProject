@@ -10,6 +10,7 @@ body {
     justify-content: space-between;
     align-items: center;
     height: 100vh;
+    color: white;
 }
 
 button {
@@ -44,6 +45,13 @@ img {
     width: 100%;
 }
 
-h2.winner-text {
-    color: white;
+div.top {
+    display: flex;
+    align-self: flex-start;
+    align-items: center;
+}
+
+div.top > p {
+    margin: 0;
+    margin-left: 10px;
 }
