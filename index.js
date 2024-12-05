@@ -2,7 +2,7 @@ let deckID;
 const drawCardsBtn = document.getElementById('draw-cards')
 const newDeckBtn = document.querySelector('#new-deck')
 const cardsContainer = document.querySelector('#cards-container')
-const winner = document.querySelector('#winner')
+const winnerText = document.querySelector('#winner-text')
 
 const getDeck = () => {
     fetch('https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/')
@@ -22,14 +22,7 @@ const drawCards = () => {
             cardsContainer.children[1].innerHTML = `
                 <img src="${data.cards[1].image}"></img>
             `
-            const highest = getTheHighest(data.cards[0], data.cards[1])
-            
-            if (highest === data.cards[0].value)
-                winner.innerHTML = "Computer wins!"
-            else if (highest === data.cards[1].value) 
-                winner.innerHTML = "You win!"
-            else 
-                winner.innerHTML = "War!"
+            winnerText.textContent = getTheHighest(data.cards[0], data.cards[1])
         })
 }
 
@@ -40,10 +33,10 @@ const getTheHighest = (card1, card2) => {
         const card2Value = valueOptions.indexOf(card2.value)
     
         return card1Value > card2Value
-        ? valueOptions[card1Value]
+        ? "Computer Wins!"
         : card1Value < card2Value
-            ? valueOptions[card2Value]
-            : "draw";
+            ? "You win!"
+            : "War!";
     
 }
 
