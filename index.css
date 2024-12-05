@@ -1,4 +1,45 @@
 html, body {
     margin: 0;
     padding: 0;
+    background: #094524;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+}
+
+button {
+    background: #fffb00;
+    border: none;
+    cursor: pointer;
+    padding: .7em;
+    font-weight: 700;
+}
+
+button:hover {
+    box-shadow: 0px 0px 5px #01CB98;
+}
+
+.new-deck {
+    align-self: flex-start;
+}
+
+.draw-cards {
+    width: 100%;
+}
+
+.card-slot {
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 200px;
+    width: calc(200px * 5 / 7);
+    margin: 20px 0;
+}
+
+img {
+    width: 100%;
 }
