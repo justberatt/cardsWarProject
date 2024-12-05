@@ -43,3 +43,7 @@ button:hover {
 img {
     width: 100%;
 }
+
+h2.winner {
+    color: white;
+}
