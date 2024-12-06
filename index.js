@@ -21,7 +21,6 @@ const drawCards = () => {
             remainingCardsText.textContent = `Cards remaining: ${data.remaining}`
             if (data.remaining === 0) {
                 drawCardsBtn.disabled = true
-                drawCardsBtn.classList.add('disabled')
             }
 
             cardsContainer.children[0].innerHTML = `
