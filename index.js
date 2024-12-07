@@ -25,10 +25,6 @@ const drawCards = () => {
         .then(res => res.json())
         .then(data => {
             remainingCardsText.textContent = `Cards remaining: ${data.remaining}`
-            if (data.remaining === 0) {
-                drawCardsBtn.disabled = true
-            }
-
             card1.innerHTML = `
                 <img src="${data.cards[0].image}"></img>
             `
@@ -36,6 +32,12 @@ const drawCards = () => {
                 <img src="${data.cards[1].image}"></img>
             `
             winnerText.textContent = getTheHighest(data.cards[0], data.cards[1])
+            if (data.remaining === 0) {
+                drawCardsBtn.disabled = true
+                myScore > computerScore ? winnerText.textContent = `Congrats. You win the match!`
+                    : myScore < computerScore ? winnerText.textContent = `Shame. Computer wins the match!`
+                    : winnerText.textContent = `It's a tie!`
+            }
         })
 }
 
