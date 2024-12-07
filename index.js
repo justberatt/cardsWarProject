@@ -33,18 +33,31 @@ const drawCards = () => {
         })
 }
 
+let computerScore = 0
+let myScore = 0
+let result = ''
+
+const myScoreHolder = document.querySelector("#my-score")
+const computerScoreHolder = document.querySelector("#computer-score")
+
 const getTheHighest = (card1, card2) => {
     const valueOptions = ["2", "3", "4", "5", "6", "7", "8", "9", 
         "10", "JACK", "QUEEN", "KING", "ACE"]
         const card1Value = valueOptions.indexOf(card1.value)
         const card2Value = valueOptions.indexOf(card2.value)
     
-        return card1Value > card2Value
-        ? "Computer Wins!"
-        : card1Value < card2Value
-            ? "You win!"
-            : "War!";
-    
+        if (card1Value > card2Value) {
+            computerScore++
+            computerScoreHolder.textContent = `Score: ${computerScore}`
+            result = "Computer Wins!"
+        } else if (card1Value < card2Value) {
+            myScore++
+            myScore.textContent = `Score: ${myScoreHolder}`
+            result = "You win!"
+        } else {
+            result = "War!"
+        }
+        return result
 }
 
 newDeckBtn.addEventListener('click', getDeck)
