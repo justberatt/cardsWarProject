@@ -1,9 +1,15 @@
 let deckID;
+let computerScore = 0
+let myScore = 0
+let result = ''
 const drawCardsBtn = document.getElementById('draw-cards')
 const newDeckBtn = document.querySelector('#new-deck')
-const cardsContainer = document.querySelector('#cards-container')
+const card1 = document.querySelector('#card1')
+const card2 = document.querySelector('#card2')
 const winnerText = document.querySelector('#winner-text')
 const remainingCardsText = document.getElementById("remaining-cards")
+const yourScoreHolder = document.querySelector("#your-score")
+const computerScoreHolder = document.querySelector("#computer-score")
 
 const getDeck = () => {
     fetch('https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/')
@@ -23,22 +29,15 @@ const drawCards = () => {
                 drawCardsBtn.disabled = true
             }
 
-            cardsContainer.children[0].innerHTML = `
+            card1.innerHTML = `
                 <img src="${data.cards[0].image}"></img>
             `
-            cardsContainer.children[1].innerHTML = `
+            card2.innerHTML = `
                 <img src="${data.cards[1].image}"></img>
             `
             winnerText.textContent = getTheHighest(data.cards[0], data.cards[1])
         })
 }
-
-let computerScore = 0
-let myScore = 0
-let result = ''
-
-const myScoreHolder = document.querySelector("#my-score")
-const computerScoreHolder = document.querySelector("#computer-score")
 
 const getTheHighest = (card1, card2) => {
     const valueOptions = ["2", "3", "4", "5", "6", "7", "8", "9", 
@@ -48,15 +47,15 @@ const getTheHighest = (card1, card2) => {
     
         if (card1Value > card2Value) {
             computerScore++
-            computerScoreHolder.textContent = `Score: ${computerScore}`
             result = "Computer Wins!"
         } else if (card1Value < card2Value) {
             myScore++
-            myScore.textContent = `Score: ${myScoreHolder}`
             result = "You win!"
         } else {
             result = "War!"
         }
+        yourScoreHolder.textContent = `You: ${myScore}`
+        computerScoreHolder.textContent = `Computer: ${computerScore}`
         return result
 }
 
